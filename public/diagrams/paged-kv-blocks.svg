@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 268" width="660" height="268" role="img" aria-labelledby="paged-title paged-desc">
+  <title id="paged-title">A forty-token chat split into three blocks and stored in GPU blocks 7, 2 and 11</title>
+  <desc id="paged-desc">A chat with forty tokens needs three blocks: sixteen tokens, sixteen tokens, and eight tokens. A list points from the chat's first block to GPU block seven, its second block to GPU block two, and its third block to GPU block eleven. The GPU blocks are not next to each other, and eight slots of the last block are unused.</desc>
+
+  <style>
+    .lbl { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: 1px; fill: #6c7067; }
+    .box { fill: #56695e; fill-opacity: 0.12; stroke: #56695e; stroke-width: 1; }
+    .part { fill: #56695e; fill-opacity: 0.35; stroke: #56695e; stroke-width: 1; }
+    .unused { fill: none; stroke: #a9412b; stroke-dasharray: 3 3; stroke-width: 1; }
+    .map { fill: none; stroke: #d7d1c4; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; fill: #202522; }
+    .pin { fill: #56695e; }
+    .pin-hot { fill: #a9412b; }
+    .num { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; fill: #6c7067; }
+    .num-light { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; fill: #faf9f5; }
+    .cap { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; fill: #6c7067; }
+    .ax { stroke: #d7d1c4; }
+    .hot { fill: #a9412b; }
+  </style>
+
+  <text class="lbl" x="0" y="12">PAGED ALLOCATION · 40 TOKENS · 16 TOKENS PER BLOCK</text>
+  <line class="ax" x1="0" y1="20" x2="660" y2="20" />
+
+  <!-- Logical blocks -->
+  <text class="lbl" x="0" y="47">LOGICAL</text>
+
+  <rect class="box" x="76" y="30" width="120" height="36" />
+  <text class="mono" x="86" y="53">L0</text>
+  <text class="num" x="186" y="53" text-anchor="end">0-15</text>
+
+  <rect class="box" x="204" y="30" width="120" height="36" />
+  <text class="mono" x="214" y="53">L1</text>
+  <text class="num" x="314" y="53" text-anchor="end">16-31</text>
+
+  <rect class="box" x="332" y="30" width="120" height="36" />
+  <rect class="part" x="332" y="30" width="60" height="36" />
+  <text class="mono" x="342" y="53">L2</text>
+  <text class="num" x="384" y="53" text-anchor="end">32-39</text>
+  <rect class="unused" x="332" y="30" width="120" height="36" />
+
+  <text class="cap" x="462" y="48" fill="#a9412b">8 slots never used</text>
+  <text class="cap" x="462" y="62">bounded waste</text>
+
+  <!-- Mapping table -->
+  <text class="lbl" x="0" y="106">BLOCK TABLE</text>
+  <g>
+    <line class="ax" x1="76" y1="94" x2="236" y2="94" />
+    <text class="mono" x="84" y="112">L0</text>
+    <text class="cap" x="112" y="112">→</text>
+    <text class="mono" x="136" y="112">P7</text>
+
+    <line class="ax" x1="76" y1="122" x2="236" y2="122" />
+    <text class="mono" x="84" y="140">L1</text>
+    <text class="cap" x="112" y="140">→</text>
+    <text class="mono" x="136" y="140">P2</text>
+
+    <line class="ax" x1="76" y1="150" x2="236" y2="150" />
+    <text class="mono" x="84" y="168">L2</text>
+    <text class="cap" x="112" y="168">→</text>
+    <text class="mono" x="136" y="168">P11</text>
+    <line class="ax" x1="76" y1="178" x2="236" y2="178" />
+  </g>
+
+  <!-- Physical pool -->
+  <text class="lbl" x="286" y="86">PHYSICAL POOL · 12 BLOCKS</text>
+  <g>
+    <rect x="286" y="94" width="26" height="34" class="unused" />
+    <rect x="316" y="94" width="26" height="34" class="unused" />
+    <rect class="pin" x="346" y="94" width="26" height="34" />
+    <rect x="376" y="94" width="26" height="34" class="unused" />
+    <rect x="406" y="94" width="26" height="34" class="unused" />
+    <rect x="436" y="94" width="26" height="34" class="unused" />
+    <rect x="466" y="94" width="26" height="34" class="unused" />
+    <rect class="pin" x="496" y="94" width="26" height="34" />
+    <rect x="526" y="94" width="26" height="34" class="unused" />
+    <rect x="556" y="94" width="26" height="34" class="unused" />
+    <rect x="586" y="94" width="26" height="34" class="unused" />
+    <rect class="hot" x="616" y="94" width="26" height="34" />
+  </g>
+  <g text-anchor="middle">
+    <text class="num" x="299" y="115">0</text>
+    <text class="num" x="329" y="115">1</text>
+    <text class="num-light" x="359" y="115">2</text>
+    <text class="num" x="389" y="115">3</text>
+    <text class="num" x="419" y="115">4</text>
+    <text class="num" x="449" y="115">5</text>
+    <text class="num" x="479" y="115">6</text>
+    <text class="num-light" x="509" y="115">7</text>
+    <text class="num" x="539" y="115">8</text>
+    <text class="num" x="569" y="115">9</text>
+    <text class="num" x="599" y="115">10</text>
+    <text class="num-light" x="629" y="115">11</text>
+  </g>
+
+  <text class="cap" x="286" y="146">free · in use · partly used</text>
+
+  <!-- Notes -->
+  <line class="ax" x1="0" y1="196" x2="660" y2="196" />
+  <text class="cap" x="0" y="216">Three blocks instead of one long piece of memory. Block 7 is nowhere near block 2.</text>
+  <text class="cap" x="0" y="234">vLLM only has to find three free blocks, not three in a row.</text>
+
+  <g>
+    <rect class="pin" x="0" y="252" width="9" height="9" />
+    <text class="cap" x="14" y="260">in use</text>
+    <rect class="hot" x="76" y="252" width="9" height="9" />
+    <text class="cap" x="90" y="260">in use, half full</text>
+  </g>
+</svg>

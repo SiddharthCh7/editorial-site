@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 300" width="660" height="300" role="img" aria-labelledby="kv-title kv-desc">
+  <title id="kv-title">Block tables mapping three sequences onto a shared pool of physical KV blocks</title>
+  <desc id="kv-desc">Three sequences each map logical token blocks onto physical blocks. The first two blocks are a shared system prefix referenced by all three sequences, while the remaining blocks are private. Nine of twelve physical blocks are resident; three are free.</desc>
+
+  <style>
+    .lbl { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: 1px; fill: #6c7067; }
+    .seq { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; fill: #202522; }
+    .num { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; fill: #faf9f5; }
+    .shared { fill: #a9412b; }
+    .private { fill: #56695e; }
+    .free { fill: none; stroke: #d7d1c4; }
+    .ax { stroke: #d7d1c4; }
+    .cap { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; fill: #6c7067; }
+  </style>
+
+  <text class="lbl" x="0" y="12">LOGICAL BLOCKS PER SEQUENCE</text>
+  <line class="ax" x1="0" y1="20" x2="660" y2="20" />
+
+  <!-- Sequence A -->
+  <g>
+    <text class="seq" x="0" y="48">seq A</text>
+    <rect class="shared" x="56" y="34" width="30" height="20" />
+    <text class="num" x="66" y="48">0</text>
+    <rect class="shared" x="90" y="34" width="30" height="20" />
+    <text class="num" x="100" y="48">1</text>
+    <rect class="private" x="124" y="34" width="30" height="20" />
+    <text class="num" x="132" y="48">2</text>
+    <rect class="private" x="158" y="34" width="30" height="20" />
+    <text class="num" x="166" y="48">3</text>
+    <text class="cap" x="200" y="48">4 blocks · 128 tokens each</text>
+  </g>
+
+  <!-- Sequence B -->
+  <g>
+    <text class="seq" x="0" y="78">seq B</text>
+    <rect class="shared" x="56" y="64" width="30" height="20" />
+    <text class="num" x="66" y="78">0</text>
+    <rect class="shared" x="90" y="64" width="30" height="20" />
+    <text class="num" x="100" y="78">1</text>
+    <rect class="private" x="124" y="64" width="30" height="20" />
+    <text class="num" x="132" y="78">4</text>
+    <rect class="private" x="158" y="64" width="30" height="20" />
+    <text class="num" x="166" y="78">5</text>
+  </g>
+
+  <!-- Sequence C -->
+  <g>
+    <text class="seq" x="0" y="108">seq C</text>
+    <rect class="shared" x="56" y="94" width="30" height="20" />
+    <text class="num" x="66" y="108">0</text>
+    <rect class="shared" x="90" y="94" width="30" height="20" />
+    <text class="num" x="100" y="108">1</text>
+    <rect class="private" x="124" y="94" width="30" height="20" />
+    <text class="num" x="132" y="108">6</text>
+    <rect class="private" x="158" y="94" width="30" height="20" />
+    <text class="num" x="166" y="108">7</text>
+    <rect class="private" x="192" y="94" width="30" height="20" />
+    <text class="num" x="200" y="108">8</text>
+  </g>
+
+  <text class="cap" x="0" y="136">Logical block 0–1 are a shared system prefix: one physical copy, three references.</text>
+
+  <text class="lbl" x="0" y="170">PHYSICAL POOL · 128-TOKEN BLOCKS</text>
+  <line class="ax" x1="0" y1="178" x2="660" y2="178" />
+
+  <!-- Physical pool -->
+  <g>
+    <rect class="shared" x="0" y="192" width="48" height="32" />
+    <text class="num" x="20" y="212">0</text>
+    <rect class="shared" x="54" y="192" width="48" height="32" />
+    <text class="num" x="74" y="212">1</text>
+    <rect class="private" x="108" y="192" width="48" height="32" />
+    <text class="num" x="128" y="212">2</text>
+    <rect class="private" x="162" y="192" width="48" height="32" />
+    <text class="num" x="182" y="212">3</text>
+    <rect class="private" x="216" y="192" width="48" height="32" />
+    <text class="num" x="236" y="212">4</text>
+    <rect class="private" x="270" y="192" width="48" height="32" />
+    <text class="num" x="290" y="212">5</text>
+    <rect class="private" x="324" y="192" width="48" height="32" />
+    <text class="num" x="344" y="212">6</text>
+    <rect class="private" x="378" y="192" width="48" height="32" />
+    <text class="num" x="398" y="212">7</text>
+    <rect class="private" x="432" y="192" width="48" height="32" />
+    <text class="num" x="452" y="212">8</text>
+    <rect class="free" x="486" y="192" width="48" height="32" />
+    <rect class="free" x="540" y="192" width="48" height="32" />
+    <rect class="free" x="594" y="192" width="48" height="32" />
+  </g>
+
+  <g>
+    <line class="ax" x1="0" y1="232" x2="486" y2="232" />
+    <line class="ax" x1="486" y1="232" x2="654" y2="232" stroke-dasharray="3 3" />
+    <text class="cap" x="0" y="250">9 of 12 resident · 3 free</text>
+    <text class="cap" x="486" y="250">free for the next admission</text>
+  </g>
+
+  <g>
+    <line class="ax" x1="0" y1="268" x2="660" y2="268" />
+    <text class="cap" x="0" y="284">Prefix reuse keeps the shared blocks alive across requests; a diverging token copies the block first.</text>
+  </g>
+</svg>

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 340" width="660" height="340" role="img" aria-labelledby="bt-title bt-desc">
+  <title id="bt-title">Static batching compared with continuous batching over eight decoding steps</title>
+  <desc id="bt-desc">Four sequences arrive together. In a static batch all four occupy slots until the longest one finishes, leaving idle slots. In a continuous batch, finished sequences are replaced by queued requests at the next step, so slots stay occupied.</desc>
+
+  <style>
+    .lbl { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: 1px; fill: #6c7067; }
+    .row { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; fill: #202522; }
+    .cap { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; fill: #6c7067; }
+    .slot { fill: #56695e; }
+    .idle { fill: none; stroke: #d7d1c4; stroke-dasharray: 2 3; }
+    .new { fill: #a9412b; }
+    .axis { stroke: #d7d1c4; }
+  </style>
+
+  <text class="lbl" x="0" y="12">A - STATIC BATCH</text>
+  <line class="axis" x1="0" y1="20" x2="660" y2="20" />
+
+  <!-- Step axis -->
+  <g>
+    <text class="lbl" x="0" y="38">SEQ</text>
+    <text class="lbl" x="56" y="38">STEP 1</text>
+    <text class="lbl" x="620" y="38" text-anchor="end">STEP 8</text>
+  </g>
+
+  <!-- Static rows -->
+  <g>
+    <text class="row" x="0" y="66">A</text>
+    <rect class="slot" x="52" y="54" width="54" height="16" />
+    <rect class="slot" x="108" y="54" width="54" height="16" />
+    <rect class="slot" x="164" y="54" width="54" height="16" />
+    <rect class="slot" x="220" y="54" width="54" height="16" />
+    <rect class="slot" x="276" y="54" width="54" height="16" />
+    <rect class="slot" x="332" y="54" width="54" height="16" />
+    <rect class="slot" x="388" y="54" width="54" height="16" />
+    <rect class="slot" x="444" y="54" width="54" height="16" />
+    <text class="cap" x="506" y="66">done at step 8</text>
+  </g>
+
+  <g>
+    <text class="row" x="0" y="96">B</text>
+    <rect class="slot" x="52" y="84" width="54" height="16" />
+    <rect class="slot" x="108" y="84" width="54" height="16" />
+    <rect class="slot" x="164" y="84" width="54" height="16" />
+    <rect class="slot" x="220" y="84" width="54" height="16" />
+    <rect class="slot" x="276" y="84" width="54" height="16" />
+    <rect class="idle" x="332" y="84" width="54" height="16" />
+    <rect class="idle" x="388" y="84" width="54" height="16" />
+    <rect class="idle" x="444" y="84" width="54" height="16" />
+    <text class="cap" x="506" y="96">idle 3 steps</text>
+  </g>
+
+  <g>
+    <text class="row" x="0" y="126">C</text>
+    <rect class="slot" x="52" y="114" width="54" height="16" />
+    <rect class="slot" x="108" y="114" width="54" height="16" />
+    <rect class="slot" x="164" y="114" width="54" height="16" />
+    <rect class="idle" x="220" y="114" width="54" height="16" />
+    <rect class="idle" x="276" y="114" width="54" height="16" />
+    <rect class="idle" x="332" y="114" width="54" height="16" />
+    <rect class="idle" x="388" y="114" width="54" height="16" />
+    <rect class="idle" x="444" y="114" width="54" height="16" />
+    <text class="cap" x="506" y="126">idle 5 steps</text>
+  </g>
+
+  <g>
+    <text class="row" x="0" y="156">D</text>
+    <rect class="slot" x="52" y="144" width="54" height="16" />
+    <rect class="slot" x="108" y="144" width="54" height="16" />
+    <rect class="idle" x="164" y="144" width="54" height="16" />
+    <rect class="idle" x="220" y="144" width="54" height="16" />
+    <rect class="idle" x="276" y="144" width="54" height="16" />
+    <rect class="idle" x="332" y="144" width="54" height="16" />
+    <rect class="idle" x="388" y="144" width="54" height="16" />
+    <rect class="idle" x="444" y="144" width="54" height="16" />
+    <text class="cap" x="506" y="156">idle 6 steps</text>
+  </g>
+
+  <text class="cap" x="0" y="186">Batch boundary: the group retires together, so the queue waits behind the longest answer.</text>
+
+  <text class="lbl" x="0" y="216">B - CONTINUOUS BATCH</text>
+  <line class="axis" x1="0" y1="224" x2="660" y2="224" />
+
+  <g>
+    <text class="row" x="0" y="262">A</text>
+    <rect class="slot" x="52" y="250" width="54" height="16" />
+    <rect class="slot" x="108" y="250" width="54" height="16" />
+    <rect class="slot" x="164" y="250" width="54" height="16" />
+    <rect class="slot" x="220" y="250" width="54" height="16" />
+    <rect class="slot" x="276" y="250" width="54" height="16" />
+    <rect class="slot" x="332" y="250" width="54" height="16" />
+    <rect class="slot" x="388" y="250" width="54" height="16" />
+    <rect class="slot" x="444" y="250" width="54" height="16" />
+  </g>
+
+  <g>
+    <text class="row" x="0" y="292">B</text>
+    <rect class="slot" x="52" y="280" width="54" height="16" />
+    <rect class="slot" x="108" y="280" width="54" height="16" />
+    <rect class="slot" x="164" y="280" width="54" height="16" />
+    <rect class="slot" x="220" y="280" width="54" height="16" />
+    <rect class="slot" x="276" y="280" width="54" height="16" />
+    <rect class="new" x="332" y="280" width="54" height="16" />
+    <rect class="new" x="388" y="280" width="54" height="16" />
+    <text class="cap" x="452" y="292">requeued work admitted here</text>
+  </g>
+
+  <g>
+    <text class="row" x="0" y="322">C</text>
+    <rect class="slot" x="52" y="310" width="54" height="16" />
+    <rect class="slot" x="108" y="310" width="54" height="16" />
+    <rect class="slot" x="164" y="310" width="54" height="16" />
+    <rect class="new" x="220" y="310" width="54" height="16" />
+    <rect class="new" x="276" y="310" width="54" height="16" />
+    <rect class="new" x="332" y="310" width="54" height="16" />
+    <rect class="new" x="388" y="310" width="54" height="16" />
+    <rect class="new" x="444" y="310" width="54" height="16" />
+    <text class="cap" x="506" y="322">slot refilled at step 3</text>
+  </g>
+</svg>

@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-labelledby="cover-title cover-desc">
+  <title id="cover-title">KV cache, paged into blocks scattered across GPU memory</title>
+  <desc id="cover-desc">An editorial cover: the letters K and V in a large serif face sit on warm paper beside a grid of memory blocks. A handful of the blocks are filled and connected by a thin line that jumps between non-adjacent cells, suggesting logical order mapped onto scattered physical memory.</desc>
+
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 5px; fill: #6C7067; }
+    .serif { font-family: Georgia, "Times New Roman", serif; }
+    .cell { fill: none; stroke: #D7D1C4; stroke-width: 1; }
+    .used { fill: #56695E; stroke: #56695E; }
+    .hot { fill: #A9412B; stroke: #A9412B; }
+    .thread { fill: none; stroke: #56695E; stroke-width: 1; stroke-dasharray: 2 5; opacity: 0.75; }
+  </style>
+
+  <rect width="1200" height="600" fill="#F3F0E7" />
+
+  <!-- Top label -->
+  <rect x="72" y="60" width="12" height="12" fill="#A9412B" />
+  <text class="mono" x="98" y="74" font-size="22">vLLM / PAGED ATTENTION</text>
+  <line x1="72" y1="104" x2="1128" y2="104" stroke="#D7D1C4" stroke-width="1" />
+
+  <!-- Wordmark -->
+  <text class="serif" x="64" y="370" font-size="270" letter-spacing="-12" fill="#202522">KV</text>
+  <rect x="436" y="342" width="26" height="26" fill="#A9412B" />
+
+  <text class="mono" x="74" y="428" font-size="22" letter-spacing="7">CACHE</text>
+  <line x1="74" y1="444" x2="380" y2="444" stroke="#D7D1C4" stroke-width="1" />
+
+  <text class="serif" x="74" y="502" font-size="42" fill="#5F635B" font-style="italic">Blocks, not buffers.</text>
+
+
+  <!-- Memory grid -->
+  <g>
+    <rect class="cell" x="660" y="140" width="44" height="44" />
+    <rect class="cell" x="714" y="140" width="44" height="44" />
+    <rect class="cell" x="768" y="140" width="44" height="44" />
+    <rect class="cell" x="822" y="140" width="44" height="44" />
+    <rect class="cell" x="876" y="140" width="44" height="44" />
+    <rect class="cell" x="930" y="140" width="44" height="44" />
+    <rect class="cell" x="984" y="140" width="44" height="44" />
+    <rect class="cell" x="1038" y="140" width="44" height="44" />
+
+    <rect class="cell" x="660" y="194" width="44" height="44" />
+    <rect class="cell" x="714" y="194" width="44" height="44" />
+    <rect class="cell" x="768" y="194" width="44" height="44" />
+    <rect class="cell" x="822" y="194" width="44" height="44" />
+    <rect class="cell" x="876" y="194" width="44" height="44" />
+    <rect class="cell" x="930" y="194" width="44" height="44" />
+    <rect class="cell" x="984" y="194" width="44" height="44" />
+    <rect class="cell" x="1038" y="194" width="44" height="44" />
+
+    <rect class="cell" x="660" y="248" width="44" height="44" />
+    <rect class="cell" x="714" y="248" width="44" height="44" />
+    <rect class="cell" x="768" y="248" width="44" height="44" />
+    <rect class="cell" x="822" y="248" width="44" height="44" />
+    <rect class="cell" x="876" y="248" width="44" height="44" />
+    <rect class="cell" x="930" y="248" width="44" height="44" />
+    <rect class="cell" x="984" y="248" width="44" height="44" />
+    <rect class="cell" x="1038" y="248" width="44" height="44" />
+
+    <rect class="cell" x="660" y="302" width="44" height="44" />
+    <rect class="cell" x="714" y="302" width="44" height="44" />
+    <rect class="cell" x="768" y="302" width="44" height="44" />
+    <rect class="cell" x="822" y="302" width="44" height="44" />
+    <rect class="cell" x="876" y="302" width="44" height="44" />
+    <rect class="cell" x="930" y="302" width="44" height="44" />
+    <rect class="cell" x="984" y="302" width="44" height="44" />
+    <rect class="cell" x="1038" y="302" width="44" height="44" />
+
+    <rect class="cell" x="660" y="356" width="44" height="44" />
+    <rect class="cell" x="714" y="356" width="44" height="44" />
+    <rect class="cell" x="768" y="356" width="44" height="44" />
+    <rect class="cell" x="822" y="356" width="44" height="44" />
+    <rect class="cell" x="876" y="356" width="44" height="44" />
+    <rect class="cell" x="930" y="356" width="44" height="44" />
+    <rect class="cell" x="984" y="356" width="44" height="44" />
+    <rect class="cell" x="1038" y="356" width="44" height="44" />
+
+    <rect class="cell" x="660" y="410" width="44" height="44" />
+    <rect class="cell" x="714" y="410" width="44" height="44" />
+    <rect class="cell" x="768" y="410" width="44" height="44" />
+    <rect class="cell" x="822" y="410" width="44" height="44" />
+    <rect class="cell" x="876" y="410" width="44" height="44" />
+    <rect class="cell" x="930" y="410" width="44" height="44" />
+    <rect class="cell" x="984" y="410" width="44" height="44" />
+    <rect class="cell" x="1038" y="410" width="44" height="44" />
+  </g>
+
+  <!-- A logical order spread across physical blocks -->
+  <path class="thread" d="M682 432 L736 216 L790 378 L844 270 L898 432 L952 216 L1006 324 L1060 162" />
+
+  <rect class="used" x="660" y="410" width="44" height="44" />
+  <rect class="used" x="714" y="194" width="44" height="44" />
+  <rect class="used" x="768" y="356" width="44" height="44" />
+  <rect class="used" x="822" y="248" width="44" height="44" />
+  <rect class="used" x="876" y="410" width="44" height="44" />
+  <rect class="used" x="930" y="194" width="44" height="44" />
+  <rect class="used" x="984" y="302" width="44" height="44" />
+  <rect class="hot" x="1038" y="140" width="44" height="44" />
+
+  <g fill="#F3F0E7">
+    <text x="678" y="440" font-family="ui-monospace, Menlo, monospace" font-size="15">0</text>
+    <text x="732" y="224" font-family="ui-monospace, Menlo, monospace" font-size="15">1</text>
+    <text x="786" y="386" font-family="ui-monospace, Menlo, monospace" font-size="15">2</text>
+    <text x="840" y="278" font-family="ui-monospace, Menlo, monospace" font-size="15">3</text>
+    <text x="894" y="440" font-family="ui-monospace, Menlo, monospace" font-size="15">4</text>
+    <text x="948" y="224" font-family="ui-monospace, Menlo, monospace" font-size="15">5</text>
+    <text x="1002" y="332" font-family="ui-monospace, Menlo, monospace" font-size="15">6</text>
+    <text x="1056" y="170" font-family="ui-monospace, Menlo, monospace" font-size="15">7</text>
+  </g>
+
+  <line x1="660" y1="500" x2="1128" y2="500" stroke="#D7D1C4" stroke-width="1" />
+  <text class="mono" x="660" y="532" font-size="17" letter-spacing="3">LOGICAL ORDER · PHYSICAL PLACEMENT</text>
+</svg>

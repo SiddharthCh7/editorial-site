@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 260" width="660" height="260" role="img" aria-labelledby="frag-title frag-desc">
+  <title id="frag-title">Two chats sharing memory, one able to grow and one stuck</title>
+  <desc id="frag-desc">Two chats share a pool of twelve blocks. Chat A holds three blocks in a row and chat B holds the next four. B can grow into the free block beside it. A needs a fourth block, but the next block belongs to B, so A is stuck even though there is free space further along.</desc>
+
+  <style>
+    .lbl { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: 1px; fill: #6c7067; }
+    .cell { stroke-width: 1; }
+    .a { fill: #56695e; stroke: #56695e; }
+    .b { fill: #202522; stroke: #202522; }
+    .free { fill: none; stroke: #d7d1c4; stroke-dasharray: 2 3; }
+    .grow { fill: #a9412b; stroke: #a9412b; }
+    .mark { fill: #faf9f5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+    .cap { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; fill: #6c7067; }
+    .ax { stroke: #d7d1c4; }
+    .hot { stroke: #a9412b; stroke-dasharray: 3 3; }
+    .hotline { stroke: #a9412b; }
+  </style>
+
+  <text class="lbl" x="0" y="12">CONTIGUOUS ALLOCATION · TWELVE BLOCKS OF 2 MiB</text>
+  <line class="ax" x1="0" y1="20" x2="660" y2="20" />
+
+  <!-- Row one: at admission -->
+  <text class="lbl" x="0" y="63">AT FIRST</text>
+
+  <g class="cell">
+    <rect class="a" x="76" y="40" width="40" height="36" />
+    <rect class="a" x="122" y="40" width="40" height="36" />
+    <rect class="a" x="168" y="40" width="40" height="36" />
+
+    <rect class="b" x="214" y="40" width="40" height="36" />
+    <rect class="b" x="260" y="40" width="40" height="36" />
+    <rect class="b" x="306" y="40" width="40" height="36" />
+    <rect class="b" x="352" y="40" width="40" height="36" />
+
+    <rect class="free" x="398" y="40" width="40" height="36" />
+    <rect class="free" x="444" y="40" width="40" height="36" />
+    <rect class="free" x="490" y="40" width="40" height="36" />
+    <rect class="free" x="536" y="40" width="40" height="36" />
+    <rect class="free" x="582" y="40" width="40" height="36" />
+  </g>
+
+  <text class="mark" x="90" y="63">A</text>
+  <text class="mark" x="228" y="63">B</text>
+  <text class="cap" x="398" y="63" fill="#8d9087">free</text>
+
+  <text class="cap" x="76" y="100">B can grow, because the next block is free.</text>
+
+  <!-- Row two: after decoding -->
+  <text class="lbl" x="0" y="145">LATER</text>
+
+  <g class="cell">
+    <rect class="a" x="76" y="122" width="40" height="36" />
+    <rect class="a" x="122" y="122" width="40" height="36" />
+    <rect class="a" x="168" y="122" width="40" height="36" />
+
+    <rect class="b" x="214" y="122" width="40" height="36" />
+    <rect class="b" x="260" y="122" width="40" height="36" />
+    <rect class="b" x="306" y="122" width="40" height="36" />
+    <rect class="b" x="352" y="122" width="40" height="36" />
+    <rect class="grow" x="398" y="122" width="40" height="36" />
+
+    <rect class="free" x="444" y="122" width="40" height="36" />
+    <rect class="free" x="490" y="122" width="40" height="36" />
+    <rect class="free" x="536" y="122" width="40" height="36" />
+    <rect class="free" x="582" y="122" width="40" height="36" />
+  </g>
+
+  <text class="mark" x="90" y="145">A</text>
+  <text class="mark" x="228" y="145">B</text>
+  <text class="mark" x="412" y="145">+1</text>
+
+  <!-- A's blocked boundary -->
+  <line class="hot" x1="211" y1="34" x2="211" y2="182" />
+  <text class="cap" x="76" y="204" fill="#a9412b">A needs a fourth block, but the next one belongs to B.</text>
+  <text class="cap" x="76" y="220">The free blocks further along are no use to A without copying or moving.</text>
+
+  <!-- Legend -->
+  <g>
+    <line class="ax" x1="0" y1="236" x2="660" y2="236" />
+    <rect class="a" x="0" y="244" width="9" height="9" />
+    <text class="cap" x="14" y="252">request A</text>
+    <rect class="b" x="82" y="244" width="9" height="9" />
+    <text class="cap" x="96" y="252">request B</text>
+    <rect class="grow" x="164" y="244" width="9" height="9" />
+    <text class="cap" x="178" y="252">B extends here</text>
+    <rect class="free" x="278" y="244" width="9" height="9" />
+    <text class="cap" x="292" y="252">free</text>
+  </g>
+</svg>
