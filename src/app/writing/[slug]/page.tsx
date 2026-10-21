@@ -31,13 +31,24 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!article) return { title: "Article not found" };
 
   const url = `/writing/${article.slug}`;
+  // Social crawlers (Twitter/X, Facebook, LinkedIn) do not support SVG for link preview cards.
+  // Fall back to a .png equivalent or the site-wide socialImage.
+  const previewImage = article.image
+    ? article.image.replace(/\.svg$/, ".png")
+    : socialImage.url;
+
   return {
     title: article.title,
     description: article.description,
     keywords: article.tags,
     alternates: { canonical: url },
     openGraph: {
-      images: [socialImage],
+      images: [
+        {
+          url: previewImage,
+          alt: article.title,
+        },
+      ],
       type: "article",
       title: article.title,
       description: article.description,
@@ -48,7 +59,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       tags: article.tags,
     },
     twitter: {
-      images: [socialImage.url],
+      images: [previewImage],
       card: "summary_large_image",
       title: article.title,
       description: article.description,

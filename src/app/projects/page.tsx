@@ -59,7 +59,7 @@ export default function ProjectsPage() {
       <div className="mt-12">
         {projects.length === 0 ? (
           <p className="border-t border-rule pt-6 text-sm text-secondary">
-            No public projects yet. Add a Markdown file to{" "}
+            No public projects yet.{" "}
             <code className="font-mono text-xs">content/projects</code>.
           </p>
         ) : (

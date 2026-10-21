@@ -8,6 +8,7 @@ tags:
   - LLM Systems
 featured: true
 draft: false
+image: "/diagrams/vllm-kv-cover.png"
 relatedSlugs: []
 ---
 

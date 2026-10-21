@@ -24,6 +24,8 @@ export const articleSchema = z.object({
   relatedSlugs: z.array(z.string()).default([]),
   /** Optional short label shown above the title, replacing the topic name. */
   kicker: z.string().optional(),
+  /** Optional cover image for social cards and previews (PNG, JPG, or WebP). */
+  image: z.string().optional(),
   /** Optional named diagram rendered below the article header. */
   diagram: z.string().optional(),
   /** Caption for the diagram, including its figure number. */

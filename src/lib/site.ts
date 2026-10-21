@@ -15,6 +15,14 @@ export type NavItem = {
   href: string;
 };
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://example.com");
+
 export const site = {
   /** Replace with your own name. */
   name: "Sid",
@@ -26,8 +34,8 @@ export const site = {
   tagline: "Notes on LLM inference, agents, and the systems underneath them.",
   description:
     "An independent engineering publication about LLM inference, AI agents, and the systems that make them work - long-form deep dives, project case studies, and a working notebook.",
-  /** Set to a real domain before deploying, e.g. "https://example.com". */
-  url: "https://example.com",
+  /** Set to a real domain before deploying, or auto-resolved from Vercel deployment URLs. */
+  url: siteUrl,
   /** Leave empty until a real address exists. Never invent one. */
   email: "",
   /** Leave empty or add verified profile URLs only. */

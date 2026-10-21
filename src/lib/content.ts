@@ -76,9 +76,13 @@ function loadArticles(): Article[] {
 
       const slug = file.replace(/\.mdx?$/, "");
       const stats = readingTime(content);
+      const firstImageMatch = content.match(/!\[.*?\]\((.*?)\)/);
+      const extractedImage = firstImageMatch ? firstImageMatch[1].split(" ")[0].trim() : undefined;
+      const image = parsed.data.image ?? extractedImage;
 
       return {
         ...parsed.data,
+        image,
         slug,
         body: content,
         readingTime: `${Math.max(1, Math.round(stats.minutes))} min read`,
