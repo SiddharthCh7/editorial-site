@@ -34,19 +34,7 @@ Because of this loop, two requests almost never finish at the same time:
 
 If you group these two requests into a traditional static batch, User A finishes on the very first cycle. But the batch cannot finish until User B finishes all 600 cycles.
 
-So what happens to User A's slot in the GPU? Nothing. It sits there empty. The GPU continues running computations on useless padding tokens for 599 iterations just to keep the batch shape uniform.
-
-```
-Traditional (Static) Batching:
-
-Iteration:    1   2   3   4   5 ... 599  600
---------------------------------------------
-Request A:  [Tok][Pad][Pad][Pad]...[Pad][Pad]  <- Done at step 1, wastes 599 steps
-Request B:  [Tok][Tok][Tok][Tok]...[Tok][Tok]  <- Runs all 600 steps
-Request C:  [Waiting in queue outside...]      <- Cannot start until B finishes
-```
-
-While Request A's slot sits empty, Request C is stuck in the waiting queue, waiting for the entire batch to complete before it can even start.
+So what happens to User A's slot in the GPU? Nothing. It sits there empty. The GPU continues running computations on useless padding tokens for 599 iterations just to keep the batch shape uniform, while new requests in the waiting queue are blocked from starting.
 
 ![Static request-level batching with empty padding slots compared with iteration-level continuous batching](/diagrams/batching-analogy.svg "Figure 1: In static batching, finished requests trap empty slots with padding until the longest request completes. In continuous batching, queued requests enter immediately on the next token step.")
 

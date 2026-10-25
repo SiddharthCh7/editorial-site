@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { ArticleLead, ArticleRow } from "@/components/article-row";
+import { ArticleRow } from "@/components/article-row";
 import { PipelineDiagram } from "@/components/diagrams/pipeline-diagram";
 import { ProjectDiagram } from "@/components/diagrams/project-diagram";
 import {
@@ -14,7 +14,6 @@ import { closing, hero, homeCopy, site } from "@/lib/site";
 
 export default function HomePage() {
   const articles = getRecentArticles(4);
-  const [lead, ...rest] = articles;
   const project = getFeaturedProject() ?? getAllProjects()[0];
   const topics = getAllTopics().filter((topic) => topic.articleCount > 0);
 
@@ -117,10 +116,9 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {lead ? (
+        {articles.length > 0 ? (
           <div>
-            <ArticleLead article={lead} />
-            {rest.map((article) => (
+            {articles.map((article) => (
               <ArticleRow key={article.slug} article={article} />
             ))}
             <div className="border-t border-rule" />
