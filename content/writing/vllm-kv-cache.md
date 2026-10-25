@@ -9,7 +9,8 @@ tags:
 featured: true
 draft: false
 image: "/diagrams/vllm-kv-cover.png"
-relatedSlugs: []
+relatedSlugs:
+  - "continuous-batching"
 ---
 
 A model can answer one question quickly and still fall apart when ten people ask at once. The cause is usually not compute. It is memory. The GPU fills up with something called the KV cache, and the server starts kicking requests out to make room.
